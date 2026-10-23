@@ -7,13 +7,12 @@ from typing import AsyncGenerator
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from api.database import get_db_path
+from api.routes import ask, stats, titles
 
 # Explicitly load .env from project root
 env_path = Path(__file__).resolve().parent.parent / ".env"
-load_dotenv(dotenv_path=env_path, override=True)
-
-from api.database import get_db_path
-from api.routes import ask, stats, titles
+load_dotenv(dotenv_path=env_path, override=False)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -39,6 +38,7 @@ app = FastAPI(
     description="REST API for structured catalogue search, statistics, and grounded RAG Q&A.",
     version="1.0.0",
     lifespan=lifespan,
+    redoc_url=None,
 )
 
 app.add_middleware(
@@ -60,7 +60,6 @@ def root() -> dict[str, str]:
     return {
         "name": "Netflix Catalog Q&A API",
         "docs_url": "/docs",
-        "redoc_url": "/redoc",
         "health": "/health",
     }
 
