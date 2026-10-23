@@ -1,0 +1,42 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Database files & generated artifacts
+*.db
+*.db-journal
+*.db-wal
+data/*.db
+data/rag_index.pkl
+data/rag_embeddings.npz
+*.pkl
+*.npz
+*.zip
+
+# Testing & linting caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environment secrets
+.env
+.env.local
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
